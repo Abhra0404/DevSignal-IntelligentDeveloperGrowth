@@ -29,7 +29,11 @@
 
 @layer base {
   body {
-    @apply font-sans bg-white text-black antialiased selection:bg-black selection:text-white;
+    font-family: var(--font-sans);
+    background-color: var(--color-app-bg);
+    color: var(--color-app-text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     min-height: 100vh;
   }
 
@@ -40,11 +44,14 @@
 
 @layer utilities {
   .surgical-card {
-    @apply bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200;
+    background-color: var(--color-app-surface);
+    border: 2px solid var(--color-app-border);
+    box-shadow: 4px 4px 0 0 rgba(0,0,0,1);
+    transition: box-shadow 200ms ease, transform 200ms ease, background-color 200ms ease;
   }
 
   .industrial-grid {
-    background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+    background-image: radial-gradient(var(--color-primary-300) 1px, transparent 1px);
     background-size: 24px 24px;
   }
 
@@ -53,23 +60,32 @@
     width: 12px;
   }
   ::-webkit-scrollbar-track {
-    background: #f1f5f9;
-    border-left: 2px solid #000000;
+    background: var(--color-app-surface);
+    border-left: 2px solid var(--color-app-border);
   }
   ::-webkit-scrollbar-thumb {
-    background: #000000;
-    border: 2px solid #f1f5f9;
+    background: var(--color-app-border);
+    border: 2px solid var(--color-app-surface);
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #4338ca;
+    background: var(--color-accent-indigo);
   }
 
   .accent-text {
-    @apply text-accent-indigo font-black uppercase tracking-tighter;
+    color: var(--color-accent-indigo);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
   }
 
   .pill-badge {
-    @apply px-3 py-1 border border-black text-[10px] font-black uppercase tracking-widest bg-white;
+    padding: 0.25rem 0.75rem;
+    border: 1px solid var(--color-app-border);
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    background-color: var(--color-app-surface);
+    font-size: 0.625rem;
   }
 
   .no-scrollbar::-webkit-scrollbar {
@@ -90,5 +106,27 @@
     stroke-dasharray: 1000;
     stroke-dashoffset: 1000;
     animation: dash 5s linear forwards;
+  }
+
+  /* Utility helpers for theme-aware classes */
+  .app-root {
+    background-color: var(--color-app-bg);
+    color: var(--color-app-text);
+    transition: background-color 200ms ease, color 200ms ease;
+  }
+  .bg-app-surface { background-color: var(--color-app-surface); }
+  .bg-app { background-color: var(--color-app-bg); }
+  .border-app { border-color: var(--color-app-border); }
+  .text-app { color: var(--color-app-text); }
+  .text-app-muted { color: var(--color-app-text-muted); }
+
+  /* Light/Dark theme variable overrides */
+  [data-theme="dark"] {
+    --color-app-bg: #071019;
+    --color-app-surface: #0f1724;
+    --color-app-border: rgba(255,255,255,0.08);
+    --color-app-text: #e6eef8;
+    --color-app-text-muted: #94a3b8;
+    --color-primary-300: rgba(148,163,184,0.18);
   }
 }

@@ -6,13 +6,28 @@ interface ActivityChartProps {
     week: number;
     days: number[];
   }[];
+  isRetrying?: boolean;
+  retryAttempt?: number;
+  maxRetries?: number;
 }
 
-export function ActivityChart({ data }: ActivityChartProps) {
+export function ActivityChart({ data, isRetrying = false, retryAttempt = 0, maxRetries = 3 }: ActivityChartProps) {
   // Check if data is missing or empty (GitHub returns 202 during computation)
   const isComputing = !data || (Array.isArray(data) && data.length === 0);
+  const retryLabelAttempt = Math.min(retryAttempt + 1, maxRetries);
 
   if (isComputing) {
+    if (!isRetrying) {
+      return (
+        <div className="h-48 flex flex-col items-center justify-center text-zinc-500 space-y-4 industrial-grid bg-zinc-50 border-2 border-black border-dashed">
+          <p className="text-xs font-black uppercase tracking-[0.25em]">No Activity Data Available</p>
+          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400">
+            GitHub stats are still unavailable for this repository.
+          </p>
+        </div>
+      );
+    }
+
     return (
       <div className="h-48 flex flex-col items-center justify-center text-zinc-400 space-y-6 industrial-grid bg-zinc-50 border-2 border-black border-dashed">
         <div className="flex gap-2">
@@ -25,7 +40,9 @@ export function ActivityChart({ data }: ActivityChartProps) {
             />
           ))}
         </div>
-        <p className="text-[10px] font-black uppercase tracking-[0.3em] animate-pulse">Syncing_Activity_Buffer...</p>
+        <p className="text-[10px] font-black uppercase tracking-[0.3em] animate-pulse">
+          Fetching_From_GitHub (attempt {retryLabelAttempt}/{maxRetries})...
+        </p>
       </div>
     );
   }
@@ -44,6 +61,15 @@ export function ActivityChart({ data }: ActivityChartProps) {
 
   const linePath = points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
   const areaPath = `${linePath} L ${points[points.length - 1].x} ${height} L ${points[0].x} ${height} Z`;
+
+  const monthTicks = [0, 0.33, 0.66, 1].map((ratio) => {
+    const index = Math.min(data.length - 1, Math.max(0, Math.round((data.length - 1) * ratio)));
+    const weekDate = new Date((data[index]?.week || 0) * 1000);
+    return {
+      key: `${index}-${ratio}`,
+      label: weekDate.toLocaleDateString(undefined, { month: 'short' }).toUpperCase(),
+    };
+  });
 
   return (
     <div className="relative group p-4 border-2 border-black bg-white">
@@ -92,8 +118,16 @@ export function ActivityChart({ data }: ActivityChartProps) {
         ))}
       </svg>
 
-      <div className="flex justify-between mt-6 text-[10px] font-black uppercase tracking-widest text-zinc-400 border-t-2 border-black pt-4">
-        <span className="flex items-center gap-2"><span className="w-2 h-2 bg-zinc-200" /> T-12_WEEKS</span>
+      <div className="grid grid-cols-4 mt-6 text-[10px] font-black uppercase tracking-widest text-zinc-400 border-t-2 border-black pt-4">
+        {monthTicks.map((tick, idx) => (
+          <span key={tick.key} className={idx === 0 ? 'text-left' : idx === monthTicks.length - 1 ? 'text-right' : 'text-center'}>
+            {tick.label}
+          </span>
+        ))}
+      </div>
+
+      <div className="flex justify-between mt-2 text-[10px] font-black uppercase tracking-widest text-zinc-400">
+        <span className="flex items-center gap-2"><span className="w-2 h-2 bg-zinc-200" /> LAST_12_WEEKS</span>
         <span className="flex items-center gap-2">CURRENT_SIGNAL <span className="w-2 h-2 bg-black" /></span>
       </div>
     </div>
