@@ -15,27 +15,31 @@ export function ActivityFeed() {
   const { data: activities, isLoading } = useActivity();
 
   return (
-    <div className="surgical-card p-10 bg-white h-full min-h-[480px] relative overflow-hidden group">
-      <div className="flex justify-between items-center mb-12 border-b-2 border-black pb-6">
+    <div className="surgical-card p-6 bg-white relative overflow-hidden group">
+      <div className="flex justify-between items-center mb-5 border-b-2 border-black pb-3">
         <div>
-          <h3 className="text-3xl font-black tracking-tighter text-black uppercase leading-none">Recent <br /><span className="text-accent-indigo italic">Activity</span></h3>
-          <p className="text-[10px] text-zinc-500 uppercase tracking-[0.4em] font-black mt-4">Verified_Telemetry_Pulse</p>
+          <h3 className="text-lg font-black tracking-tighter text-black uppercase leading-none">Recent <span className="text-accent-indigo italic">Activity</span></h3>
+          <p className="text-[9px] text-zinc-500 uppercase tracking-[0.3em] font-black mt-1.5">Verified_Telemetry_Pulse</p>
         </div>
+        <span className="px-2 py-0.5 border border-black bg-zinc-50 text-[8px] font-black uppercase tracking-widest text-zinc-500">
+          Live
+        </span>
       </div>
 
-      <div className="relative space-y-12 before:absolute before:inset-0 before:left-[21px] before:w-[2px] before:bg-black/10">
+      <div className="relative space-y-5 before:absolute before:inset-0 before:left-[15px] before:w-[2px] before:bg-black/10">
         {isLoading ? (
-          [...Array(4)].map((_, i) => (
-            <div key={i} className="relative pl-16 animate-pulse">
-               <div className="absolute left-0 w-12 h-12 border-2 border-black/5 bg-zinc-50" />
-               <div className="space-y-4 mt-1">
+          [...Array(5)].map((_, i) => (
+            <div key={i} className="relative pl-12 animate-pulse">
+               <div className="absolute left-0 w-8 h-8 border-2 border-black/5 bg-zinc-50" />
+               <div className="space-y-2 mt-1">
                  <div className="h-2 w-20 bg-black/5" />
-                 <div className="h-4 w-full bg-black/5" />
+                 <div className="h-3 w-full bg-black/5" />
+                 <div className="h-2 w-3/4 bg-black/5" />
                </div>
             </div>
           ))
         ) : activities && activities.length > 0 ? (
-          activities.map((item, index) => {
+          activities.slice(0, 5).map((item, index) => {
             const config = iconMap[item.type] || iconMap.other;
             const { Icon, color } = config;
             return (
@@ -43,28 +47,31 @@ export function ActivityFeed() {
                 key={item.id}
                 initial={{ opacity: 0, x: -10 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.1 }}
+                transition={{ delay: index * 0.08 }}
                 viewport={{ once: true }}
-                className="relative pl-16 group/item"
+                className="relative pl-12 group/item"
               >
                 {/* Timeline Indicator */}
-                <div className="absolute left-0 w-12 h-12 border-2 border-black bg-white flex items-center justify-center transition-all duration-300 group-hover/item:bg-black group-hover/item:text-white z-10">
-                  <Icon size={20} className={cn("transition-colors", color)} strokeWidth={3} />
+                <div className="absolute left-0 w-8 h-8 border-2 border-black bg-white flex items-center justify-center transition-all duration-300 group-hover/item:bg-black group-hover/item:text-white z-10">
+                  <Icon size={14} className={cn("transition-colors", color)} strokeWidth={3} />
                 </div>
 
-                <div className="space-y-3">
-                  <div className="flex items-center gap-4">
-                    <span className="px-3 py-1 border border-black/10 bg-zinc-50 text-[9px] font-black text-zinc-400 uppercase tracking-widest">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="px-1.5 py-0.5 border border-black/10 bg-zinc-50 text-[8px] font-black text-zinc-400 uppercase tracking-widest">
                       {item.time}
                     </span>
-                    <span className="px-3 py-1 border border-black/10 bg-zinc-50 text-[9px] font-black text-black uppercase tracking-widest truncate max-w-[150px]">
+                    <span className="px-1.5 py-0.5 border border-black/10 bg-zinc-50 text-[8px] font-black text-black uppercase tracking-widest truncate max-w-[160px]">
                       {item.repo}
                     </span>
+                    <span className={cn("px-1.5 py-0.5 border border-black/10 bg-zinc-50 text-[8px] font-black uppercase tracking-widest", color)}>
+                      {item.type}
+                    </span>
                   </div>
-                  <h4 className="text-lg font-black text-black group-hover/item:text-accent-indigo transition-colors leading-none tracking-tight uppercase">
+                  <h4 className="text-sm font-black text-black group-hover/item:text-accent-indigo transition-colors leading-tight tracking-tight uppercase">
                     {item.title}
                   </h4>
-                  <p className="text-sm text-zinc-400 font-bold italic leading-relaxed border-l-4 border-black/5 pl-4">
+                  <p className="text-[11px] text-zinc-500 font-bold italic leading-relaxed border-l-2 border-black/10 pl-2.5">
                     "{item.description}"
                   </p>
                 </div>
@@ -72,11 +79,11 @@ export function ActivityFeed() {
             );
           })
         ) : (
-          <div className="py-24 text-center">
-            <div className="w-20 h-20 border-4 border-dashed border-black/20 flex items-center justify-center mx-auto mb-8">
-              <Terminal size={36} className="text-black/10" />
+          <div className="py-12 text-center">
+            <div className="w-12 h-12 border-2 border-dashed border-black/20 flex items-center justify-center mx-auto mb-4">
+              <Terminal size={20} className="text-black/10" />
             </div>
-            <p className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.4em] leading-loose">
+            <p className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.3em]">
               LOGS_NULL: No recent pulse detected.
             </p>
           </div>

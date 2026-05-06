@@ -39,28 +39,28 @@ interface LanguageChartProps {
 export function LanguageChart({ languages }: LanguageChartProps) {
   const data = languages && languages.length > 0 ? languages : DEFAULT_LANGUAGES;
   return (
-    <div className="surgical-card p-10 bg-white relative overflow-hidden group">
-      <div className="flex justify-between items-center mb-12 border-b-2 border-black pb-6">
+    <div className="surgical-card p-5 bg-white relative overflow-hidden group">
+      <div className="flex justify-between items-center mb-4 border-b-2 border-black pb-3">
         <div>
-          <h3 className="text-3xl font-black tracking-tighter text-black uppercase leading-none">Language <br /><span className="text-accent-indigo italic">Distribution</span></h3>
-          <p className="text-[10px] text-zinc-500 uppercase tracking-[0.4em] font-black mt-4">Architectural_Composition</p>
+          <h3 className="text-base font-black tracking-tighter text-black uppercase leading-none">Language <span className="text-accent-indigo italic">Distribution</span></h3>
+          <p className="text-[8px] text-zinc-500 uppercase tracking-[0.3em] font-black mt-1.5">Architectural_Composition</p>
         </div>
-        <Terminal size={32} strokeWidth={3} className="text-zinc-200 group-hover:text-black transition-colors" />
+        <Terminal size={16} strokeWidth={3} className="text-zinc-200 group-hover:text-black transition-colors" />
       </div>
 
-      <div className="space-y-12 relative z-10">
+      <div className="space-y-3 relative z-10">
         {data.map((lang, index) => (
-          <div key={lang.name} className="space-y-4">
+          <div key={lang.name} className="space-y-1.5">
             <div className="flex justify-between items-end">
-              <span className="text-xs font-black text-black uppercase tracking-widest">{lang.name}</span>
-              <span className="text-sm font-black text-zinc-400 tracking-tighter">{lang.percentage}%</span>
+              <span className="text-[10px] font-black text-black uppercase tracking-widest">{lang.name}</span>
+              <span className="text-[10px] font-black text-zinc-400 tracking-tighter">{lang.percentage}%</span>
             </div>
             
-            <div className="h-4 w-full border-2 border-black p-[2px] bg-zinc-50">
+            <div className="h-2 w-full border border-black p-[1px] bg-zinc-50">
               <motion.div
                 initial={{ width: 0 }}
                 whileInView={{ width: `${lang.percentage}%` }}
-                transition={{ duration: 1.5, delay: index * 0.1, ease: "circOut" }}
+                transition={{ duration: 1.2, delay: index * 0.08, ease: "circOut" }}
                 className="h-full relative"
                 style={{ backgroundColor: LANGUAGE_COLORS[lang.name] || '#000000' }}
               />
@@ -69,9 +69,9 @@ export function LanguageChart({ languages }: LanguageChartProps) {
         ))}
       </div>
 
-      <div className="mt-16 p-8 border-4 border-black bg-zinc-50 relative overflow-hidden">
-        <div className="relative z-10 text-xs text-zinc-500 leading-relaxed font-bold italic tracking-wide">
-          "Your stack is balanced with a focus on <span className="text-black font-black not-italic border-b-2 border-black">Modern Standards</span> and <span className="text-black font-black not-italic border-b-2 border-black">System Scalability</span>."
+      <div className="mt-4 p-3 border-2 border-black bg-zinc-50 relative overflow-hidden">
+        <div className="relative z-10 text-[10px] text-zinc-500 leading-snug font-bold italic tracking-wide">
+          "Stack focused on <span className="text-black font-black not-italic border-b border-black">Modern Standards</span> &amp; <span className="text-black font-black not-italic border-b border-black">Scalability</span>."
         </div>
         <div className="industrial-grid absolute inset-0 opacity-10" />
       </div>

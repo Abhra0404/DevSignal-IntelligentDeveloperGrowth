@@ -78,44 +78,44 @@ export function LearningPathPage() {
   const PathIcon = path.icon;
 
   return (
-    <div className="min-h-screen bg-white text-black pb-40">
+    <div className="min-h-screen bg-white text-black pb-32">
       <SEO title={`${path.title} | Technical Archive`} description={path.tagline} />
 
       {/* Header Overlay */}
-      <div className="relative mb-24">
-        <div className="surgical-card p-12 md:p-24 bg-white relative overflow-hidden group">
+      <div className="relative mb-12">
+        <div className="surgical-card p-8 md:p-12 bg-white relative overflow-hidden group">
           <button 
             onClick={() => navigate('/resources')}
-            className="group mb-16 flex items-center gap-6 text-[10px] font-black uppercase tracking-[0.4em] text-zinc-500 hover:text-black transition-colors"
+            className="group mb-8 flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500 hover:text-black transition-colors"
           >
-            <div className="w-12 h-12 border-2 border-black flex items-center justify-center group-hover:bg-black group-hover:text-white transition-all">
-               <ArrowLeft size={20} strokeWidth={3} />
+            <div className="w-8 h-8 border-2 border-black flex items-center justify-center group-hover:bg-black group-hover:text-white transition-all">
+               <ArrowLeft size={14} strokeWidth={3} />
             </div>
             BACK_TO_ARCHIVE
           </button>
 
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-16 relative z-10">
-            <div className="space-y-10 max-w-4xl">
-              <div className="flex items-center gap-8">
-                 <div className="w-20 h-20 border-4 border-black flex items-center justify-center text-black">
-                    <PathIcon size={40} strokeWidth={3} />
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 relative z-10">
+            <div className="space-y-5 max-w-3xl">
+              <div className="flex items-center gap-5">
+                 <div className="w-12 h-12 border-2 border-black flex items-center justify-center text-black shrink-0">
+                    <PathIcon size={22} strokeWidth={3} />
                  </div>
-                 <div className="space-y-2">
-                    <span className="text-[10px] font-black uppercase tracking-[0.5em] text-accent-indigo">Sector: {path.category}</span>
-                    <h1 className="text-4xl md:text-7xl font-black tracking-tighter text-black uppercase leading-[0.9]">{path.title}</h1>
+                 <div className="space-y-1">
+                    <span className="text-[9px] font-black uppercase tracking-[0.4em] text-accent-indigo">Sector: {path.category}</span>
+                    <h1 className="text-2xl md:text-4xl font-black tracking-tighter text-black uppercase leading-[0.95]">{path.title}</h1>
                  </div>
               </div>
-              <p className="text-xl md:text-3xl font-bold italic border-l-8 border-black pl-8 max-w-3xl leading-relaxed text-zinc-500">
+              <p className="text-sm md:text-base font-bold italic border-l-4 border-black pl-4 max-w-2xl leading-relaxed text-zinc-500">
                 "{path.tagline}"
               </p>
             </div>
 
-            <div className="surgical-card p-12 min-w-[350px] space-y-10 bg-zinc-50">
+            <div className="surgical-card p-6 min-w-[260px] space-y-5 bg-zinc-50">
                <div className="flex justify-between items-end">
-                  <span className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500">Sync_Progress</span>
-                  <span className="text-4xl font-black tracking-tighter italic">{Math.round(progress)}%</span>
+                  <span className="text-[9px] font-black uppercase tracking-[0.3em] text-zinc-500">Sync_Progress</span>
+                  <span className="text-2xl font-black tracking-tighter italic">{Math.round(progress)}%</span>
                </div>
-               <div className="h-6 w-full border-2 border-black p-[3px] bg-white">
+               <div className="h-3 w-full border-2 border-black p-[2px] bg-white">
                   <motion.div 
                     initial={{ width: 0 }}
                     animate={{ width: `${progress}%` }}
@@ -123,14 +123,14 @@ export function LearningPathPage() {
                     transition={{ duration: 1, ease: "circOut" }}
                   />
                </div>
-               <div className="flex items-center justify-between pt-4 border-t border-black/20">
-                  <div className="flex items-center gap-4">
-                     <Clock size={16} strokeWidth={3} className="text-zinc-500" />
-                     <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500">{path.totalHours}H_EST</span>
+               <div className="flex items-center justify-between pt-2 border-t border-black/20">
+                  <div className="flex items-center gap-2">
+                     <Clock size={12} strokeWidth={3} className="text-zinc-500" />
+                     <span className="text-[9px] font-black uppercase tracking-widest text-zinc-500">{path.totalHours}H_EST</span>
                   </div>
-                  <div className="flex items-center gap-4">
-                     <Trophy size={16} strokeWidth={3} className="text-zinc-500" />
-                     <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500">{completedLevels.length}/{path.levels.length}_VERIFIED</span>
+                  <div className="flex items-center gap-2">
+                     <Trophy size={12} strokeWidth={3} className="text-zinc-500" />
+                     <span className="text-[9px] font-black uppercase tracking-widest text-zinc-500">{completedLevels.length}/{path.levels.length}_VERIFIED</span>
                   </div>
                </div>
             </div>
@@ -140,10 +140,10 @@ export function LearningPathPage() {
       </div>
 
       {/* Mastery Roadmap */}
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="space-y-20 relative pt-12">
+      <div className="max-w-5xl mx-auto px-6">
+        <div className="space-y-10 relative pt-6">
           {/* Vertical Line */}
-          <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-1 bg-black/10 hidden md:block" />
+          <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-0.5 bg-black/10 hidden md:block" />
           
           {path.levels.map((level, index) => {
             const isCompleted = completedLevels.includes(level.level);
@@ -155,61 +155,62 @@ export function LearningPathPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 className={cn(
-                  "relative flex flex-col md:flex-row items-center gap-16 md:gap-32",
+                  "relative flex flex-col md:flex-row items-center gap-8 md:gap-16",
                   index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                 )}
               >
                 {/* Node Center */}
                 <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 z-10 hidden md:block">
                    <div className={cn(
-                      "w-16 h-16 border-4 border-black flex items-center justify-center transition-all duration-500",
+                      "w-10 h-10 border-2 border-black flex items-center justify-center transition-all duration-500",
                       isCompleted ? "bg-black text-white" : "bg-white text-black"
                    )}>
-                      <span className="text-lg font-black">{level.level.toString().padStart(2, '0')}</span>
+                      <span className="text-xs font-black">{level.level.toString().padStart(2, '0')}</span>
                    </div>
                 </div>
 
                 <div className="w-full md:w-1/2">
                    <div className={cn(
-                     "surgical-card p-10 md:p-12 transition-all duration-500 group relative overflow-hidden",
+                     "surgical-card p-6 md:p-7 transition-all duration-500 group relative overflow-hidden",
                      isCompleted ? "bg-zinc-50 border-zinc-200 shadow-none" : "bg-white"
                    )}>
-                      <div className="flex items-center justify-between mb-10">
-                         <div className={cn("w-14 h-14 border-4 border-black flex items-center justify-center", isCompleted ? "bg-black text-white border-white" : "bg-white text-black")}>
+                      <div className="flex items-center justify-between mb-5">
+                         <div className={cn("w-10 h-10 border-2 border-black flex items-center justify-center", isCompleted ? "bg-black text-white border-white" : "bg-white text-black")}>
                             {getIcon(level.type)}
                          </div>
-                         <span className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-500 italic">Stage_{level.level.toString().padStart(2, '0')}</span>
+                         <span className="text-[9px] font-black uppercase tracking-[0.3em] text-zinc-500 italic">Stage_{level.level.toString().padStart(2, '0')}</span>
                       </div>
 
-                      <div className="space-y-6 mb-12">
+                      <div className="space-y-3 mb-6">
                          <h3 className={cn(
-                           "text-3xl font-black tracking-tighter leading-none uppercase",
+                           "text-lg font-black tracking-tighter leading-tight uppercase",
                            isCompleted ? "text-zinc-500 line-through" : "text-black"
                          )}>
                            {level.title}
                          </h3>
-                         <p className="text-sm font-bold text-zinc-600 italic leading-relaxed border-l-4 border-black/20 pl-6">
+                         <p className="text-xs font-bold text-zinc-600 italic leading-relaxed border-l-2 border-black/20 pl-3">
                            "{level.description}"
                          </p>
                       </div>
 
-                      <div className="flex flex-col sm:flex-row items-center gap-6">
+                      <div className="flex items-center gap-3">
                          <a 
                            href={level.url} 
                            target="_blank" 
                            rel="noopener noreferrer"
-                           className="w-full sm:flex-1 py-6 border-4 border-black bg-white flex items-center justify-center gap-4 text-[11px] font-black uppercase tracking-widest hover:bg-black hover:text-white transition-all"
+                           className="flex-1 py-3 border-2 border-black bg-white flex items-center justify-center gap-2 text-[10px] font-black uppercase tracking-widest hover:bg-black hover:text-white transition-all"
                          >
-                           ACCESS_MODULE <ExternalLink size={16} strokeWidth={3} />
+                           ACCESS_MODULE <ExternalLink size={12} strokeWidth={3} />
                          </a>
                          <button 
                            onClick={() => toggleLevel(level.level)}
                            className={cn(
-                             "w-full sm:w-20 h-20 border-4 border-black flex items-center justify-center transition-all duration-500",
+                             "w-11 h-11 border-2 border-black flex items-center justify-center transition-all duration-500 shrink-0",
                              isCompleted ? "bg-black text-white" : "bg-white text-zinc-400 hover:text-black"
                            )}
+                           aria-label={isCompleted ? 'Mark incomplete' : 'Mark complete'}
                          >
-                            <CheckCircle size={32} strokeWidth={3} />
+                            <CheckCircle size={18} strokeWidth={3} />
                          </button>
                       </div>
                    </div>
@@ -225,24 +226,96 @@ export function LearningPathPage() {
         <AnimatePresence>
           {completedLevels.length === path.levels.length && (
             <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="mt-40 p-16 md:p-32 border-8 border-black text-center space-y-12 bg-white relative overflow-hidden"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: "circOut" }}
+              className="mt-24 relative"
             >
-              <div className="industrial-grid absolute inset-0 opacity-10 pointer-events-none" />
-              <div className="w-32 h-32 bg-black text-white flex items-center justify-center mx-auto relative z-10 border-8 border-double border-white outline outline-4 outline-black">
-                 <Trophy size={64} strokeWidth={3} />
+              {/* Outer hard shadow card */}
+              <div className="border-2 border-black bg-white shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] relative overflow-hidden">
+                <div className="industrial-grid absolute inset-0 opacity-[0.07] pointer-events-none" />
+
+                {/* Top status bar */}
+                <div className="flex items-center justify-between px-6 py-3 border-b-2 border-black bg-black text-white">
+                  <div className="flex items-center gap-3">
+                    <span className="w-2 h-2 bg-green-400 animate-pulse" />
+                    <span className="text-[9px] font-black uppercase tracking-[0.4em]">Status: Verified</span>
+                  </div>
+                  <span className="text-[9px] font-black uppercase tracking-[0.4em] text-zinc-400">
+                    Log_ID: {path.id.slice(0, 8).toUpperCase()}
+                  </span>
+                </div>
+
+                {/* Body */}
+                <div className="p-8 md:p-12 grid grid-cols-1 md:grid-cols-[auto_1fr] gap-10 md:gap-14 items-center relative z-10">
+                  {/* Trophy seal */}
+                  <motion.div 
+                    initial={{ rotate: -10, scale: 0.8 }}
+                    animate={{ rotate: 0, scale: 1 }}
+                    transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+                    className="relative mx-auto md:mx-0"
+                  >
+                    <div className="w-24 h-24 md:w-28 md:h-28 bg-black text-white flex items-center justify-center border-4 border-black relative">
+                      <Trophy size={40} strokeWidth={3} />
+                      {/* Corner ticks */}
+                      <span className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-black bg-white" />
+                      <span className="absolute -top-1 -right-1 w-3 h-3 border-t-2 border-r-2 border-black bg-white" />
+                      <span className="absolute -bottom-1 -left-1 w-3 h-3 border-b-2 border-l-2 border-black bg-white" />
+                      <span className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-black bg-white" />
+                    </div>
+                    <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-accent-indigo text-white text-[8px] font-black uppercase tracking-[0.3em] whitespace-nowrap">
+                      100%
+                    </div>
+                  </motion.div>
+
+                  {/* Content */}
+                  <div className="text-center md:text-left space-y-5">
+                    <div className="space-y-2">
+                      <span className="inline-block px-2 py-0.5 bg-black text-white text-[8px] font-black uppercase tracking-[0.4em]">
+                        Achievement Unlocked
+                      </span>
+                      <h2 className="text-3xl md:text-5xl font-black tracking-tighter text-black uppercase leading-[0.95]">
+                        Sector <span className="text-accent-indigo italic">Mastered.</span>
+                      </h2>
+                      <p className="text-[10px] font-black uppercase tracking-[0.35em] text-zinc-400">
+                        All_Intelligence_Nodes_Synchronized
+                      </p>
+                    </div>
+
+                    {/* Stat row */}
+                    <div className="grid grid-cols-3 gap-3 pt-4 border-t-2 border-black/10">
+                      <div className="space-y-0.5">
+                        <div className="text-xl md:text-2xl font-black tracking-tighter leading-none">{path.levels.length}</div>
+                        <div className="text-[8px] font-black uppercase tracking-[0.3em] text-zinc-500">Stages</div>
+                      </div>
+                      <div className="space-y-0.5 border-x border-black/10 px-3">
+                        <div className="text-xl md:text-2xl font-black tracking-tighter leading-none">{path.totalHours}h</div>
+                        <div className="text-[8px] font-black uppercase tracking-[0.3em] text-zinc-500">Logged</div>
+                      </div>
+                      <div className="space-y-0.5">
+                        <div className="text-xl md:text-2xl font-black tracking-tighter leading-none text-accent-indigo">A+</div>
+                        <div className="text-[8px] font-black uppercase tracking-[0.3em] text-zinc-500">Grade</div>
+                      </div>
+                    </div>
+
+                    {/* CTA */}
+                    <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                      <button 
+                        onClick={() => navigate('/resources')} 
+                        className="flex-1 px-6 py-3.5 bg-black text-white font-black uppercase text-[11px] tracking-[0.2em] shadow-[4px_4px_0px_0px_rgba(67,56,202,0.6)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all flex items-center justify-center gap-2"
+                      >
+                        Next_Archive <ExternalLink size={12} strokeWidth={3} />
+                      </button>
+                      <button 
+                        onClick={() => { setCompletedLevels([]); localStorage.removeItem(`progress_${path.id}`); window.dispatchEvent(new Event('storage')); }}
+                        className="px-6 py-3.5 border-2 border-black bg-white font-black uppercase text-[11px] tracking-[0.2em] hover:bg-zinc-50 transition-all flex items-center justify-center gap-2"
+                      >
+                        Reset_Progress
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="space-y-6 relative z-10">
-                 <h2 className="text-5xl md:text-8xl font-black tracking-tighter text-black uppercase leading-none">Sector_Mastered</h2>
-                 <p className="text-zinc-500 font-black uppercase tracking-[0.5em] text-[10px]">ALL_INTELLIGENCE_NODES_SYNCHRONIZED</p>
-              </div>
-              <button 
-                onClick={() => navigate('/resources')} 
-                className="relative z-10 px-16 py-8 bg-black text-white font-black uppercase text-xl tracking-widest hover:scale-105 transition-all shadow-[12px_12px_0px_0px_rgba(67,56,202,0.5)]"
-              >
-                 NEXT_ARCHIVE_INITIALIZE
-              </button>
             </motion.div>
           )}
         </AnimatePresence>

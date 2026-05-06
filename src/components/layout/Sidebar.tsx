@@ -18,7 +18,7 @@ const navItems = [
 
 export function Sidebar() {
   return (
-    <aside className="hidden md:flex flex-col w-64 bg-slate-900 border-r border-slate-800 h-screen sticky top-0">
+    <aside className="hidden md:flex flex-col w-64 bg-app-surface border-r border-app h-screen sticky top-0">
       <div className="p-6">
         <h1 className="text-xl font-bold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
           DevSignal
@@ -34,7 +34,7 @@ export function Sidebar() {
               "flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 group",
               isActive 
                 ? "bg-blue-600/10 text-blue-400 font-medium" 
-                : "text-slate-400 hover:bg-white/5 hover:text-white"
+                : "text-slate-400 hover:opacity-90 hover:text-app"
             )}
           >
             <item.icon size={20} className={cn(
@@ -47,7 +47,7 @@ export function Sidebar() {
       </nav>
 
       <div className="p-4 border-t border-slate-800 space-y-2">
-        <button className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-white/5 hover:text-white w-full transition-all group">
+        <button className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:opacity-90 hover:text-app w-full transition-all group">
           <Settings size={20} className="group-hover:rotate-45 transition-transform" />
           <span>Settings</span>
         </button>

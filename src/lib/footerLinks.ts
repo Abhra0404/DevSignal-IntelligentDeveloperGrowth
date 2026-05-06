@@ -15,11 +15,6 @@ export const footerLinks: FooterLink[] = [
     internal: false,
   },
   {
-    label: 'Documentation',
-    href: `${REPO_BASE}#readme`,
-    internal: false,
-  },
-  {
     label: 'Contributing',
     href: `${REPO_BASE}/blob/main/CONTRIBUTING.md`,
     internal: false,

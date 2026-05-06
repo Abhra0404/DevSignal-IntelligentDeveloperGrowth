@@ -15,7 +15,7 @@ export function BottomNav() {
 
   return (
     <div className="fixed bottom-10 left-1/2 -translate-x-1/2 z-50 w-full max-w-2xl px-6">
-      <div className="bg-white border-4 border-black p-2 flex items-center justify-between gap-2 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+      <div className="bg-app-surface border-4 border-app p-2 flex items-center justify-between gap-2 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
         {navItems.map((item) => {
           const isActive = location.pathname === item.path;
           return (
@@ -26,14 +26,11 @@ export function BottomNav() {
                 "flex-1 flex flex-col items-center justify-center py-4 transition-all relative group",
                 isActive 
                   ? "bg-black text-white" 
-                  : "text-zinc-500 hover:bg-zinc-50 hover:text-black"
+                  : "text-app-muted hover:opacity-80"
               )}
             >
               <item.icon size={20} strokeWidth={3} className={cn("transition-transform", !isActive && "group-hover:scale-110")} />
-              <span className={cn(
-                "text-[8px] font-black uppercase tracking-[0.2em] mt-2",
-                isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100 transition-opacity"
-              )}>
+              <span className="text-[8px] font-black uppercase tracking-[0.2em] mt-2">
                 {item.label}
               </span>
             </Link>

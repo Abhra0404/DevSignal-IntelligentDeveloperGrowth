@@ -2,6 +2,7 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { AuthProvider } from './contexts/AuthContext';
 import { SearchProvider } from './contexts/SearchContext';
+import { ThemeProvider } from './contexts/ThemeContext';
 import { ProtectedRoute } from './components/layout/ProtectedRoute';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { LandingPage } from './pages/LandingPage';
@@ -19,6 +20,7 @@ export default function App() {
 
   return (
     <ErrorBoundary>
+      <ThemeProvider>
       <AuthProvider>
         <SearchProvider>
           <AnimatePresence mode="wait">
@@ -38,6 +40,7 @@ export default function App() {
           </AnimatePresence>
         </SearchProvider>
       </AuthProvider>
+      </ThemeProvider>
     </ErrorBoundary>
   );
 }
